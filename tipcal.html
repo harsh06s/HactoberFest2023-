@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tip Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+        }
+        
+        h1 {
+            font-size: 24px;
+        }
+        
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        
+        button {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: #0056b3;
+        }
+        
+        p {
+            font-weight: bold;
+            color: #007BFF;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tip Calculator</h1>
+    <label for="billAmount">Bill Amount: $</label>
+    <input type="number" id="billAmount">
+    <label for="tipPercentage">Tip Percentage:</label>
+    <input type="number" id="tipPercentage" placeholder="Enter tip percentage">
+    <button id="calculate">Calculate Tip</button>
+    <p>Tip Amount: $<span id="tipAmount">0.00</span></p>
+    <p>Total Amount: $<span id="totalAmount">0.00</span></p>
+    <script>
+        const billAmountInput = document.getElementById("billAmount");
+        const tipPercentageInput = document.getElementById("tipPercentage");
+        const calculateButton = document.getElementById("calculate");
+        const tipAmountSpan = document.getElementById("tipAmount");
+        const totalAmountSpan = document.getElementById("totalAmount");
+
+        calculateButton.addEventListener("click", function () {
+            const billAmount = parseFloat(billAmountInput.value);
+            const tipPercentage = parseFloat(tipPercentageInput.value);
+
+            if (isNaN(billAmount) || isNaN(tipPercentage)) {
+                alert("Please enter valid numbers for Bill Amount and Tip Percentage.");
+                return;
+            }
+
+            const tipAmount = (billAmount * (tipPercentage / 100)).toFixed(2);
+            const totalAmount = (billAmount + parseFloat(tipAmount)).toFixed(2);
+
+            tipAmountSpan.textContent = tipAmount;
+            totalAmountSpan.textContent = totalAmount;
+        });
+    </script>
+</body>
+</html>
